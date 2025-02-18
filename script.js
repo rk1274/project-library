@@ -5,14 +5,10 @@ function Book(title, author, numPages, haveRead) {
     this.author = author;
     this.numPages = numPages;
     this.haveRead = haveRead;
-    this.info = function() {
-        let str = this.title + " by " + this.author + ", " + this.numPages + " pages";
-        if (haveRead) {
-            return str + ", has been read"
-        } 
+}
 
-        return str + ", not read yet"
-    }
+Book.prototype.toggleReadStatus = function() {
+    this.haveRead = !this.haveRead
 }
 
 function addBookToLibrary(title, author, numPages, haveRead) {
@@ -32,62 +28,50 @@ function displayLibrary() {
 }
 
 const displayBook = (book, container) => {
-    const bookContainer = document.createElement("div");
-    bookContainer.classList.add("project");
+    let bookContainer = document.createElement("div");
+    bookContainer.classList.add("bookContainer");
 
+    let bookName = document.createElement('div');
+    bookName.textContent = book.title;
+    bookName.className = 'title';
 
-    const bookButtonContainer = document.createElement("div");
-    bookButtonContainer.classList.add("buttonContainer");
+    let bookAuthor = document.createElement('div');
+    bookAuthor.textContent = book.author;
+    bookAuthor.className = 'author';
 
-    const textDiv = document.createElement("div");
-    textDiv.classList.add("text");
+    let actions = document.createElement("div");
+    actions.classList.add("actions");
 
-    const titleDiv = document.createElement("div");
-    titleDiv.classList.add("title");
-    titleDiv.textContent = book.title;
-
-    const subtextDiv = document.createElement("div");
-    subtextDiv.classList.add("subtext");
-    subtextDiv.textContent = book.info();
-
-    const removeButton = document.createElement("BUTTON");
-    removeButton.classList.add("removeButton");
-    removeButton.textContent = "remove";
+    let removeButton = document.createElement("BUTTON");
+    removeButton.className = 'removeButton';
+    removeButton.textContent = 'remove';
     removeButton.onclick = () => removeBook(book)
 
-
-    const readButton = document.createElement("BUTTON");
-    readButton.classList.add("readButton");
-    readButton.textContent = "read";
+    let readButton = document.createElement("BUTTON");
+    readButton.className = 'readButton';
+    readButton.textContent = book.haveRead ? "Finished" : "Unread";
     readButton.onclick = () => readBook(book, readButton);
+    readButton.style.backgroundColor = book.haveRead ? "#538b4b" : "#dc5f5a"
 
-    if (book.haveRead) {
-        readButton.style.display = "none"
-    }
+    actions.append(readButton, removeButton)
 
-    textDiv.appendChild(titleDiv);
-    textDiv.appendChild(subtextDiv);
-    bookContainer.appendChild(textDiv);
-    bookContainer.appendChild(bookButtonContainer);
-    bookButtonContainer.appendChild(readButton);
-    bookButtonContainer.appendChild(removeButton);
+    removeButton.addEventListener('click', () => {
+        let index = myLibrary.indexOf(book);
+        if (index > -1) {
+            myLibrary.splice(index, 1)
+            displayLibrary();
+        }
+    })
+
+    readButton.addEventListener('click', () => {
+        book.toggleReadStatus();
+        readButton.style.backgroundColor = book.haveRead ? "#538b4b" : "#dc5f5a"
+        displayLibrary();
+    })
+
+    bookContainer.append(bookName, bookAuthor, actions)
     container.appendChild(bookContainer);
 };
-
-const removeBook = (book) => {
-    let index = myLibrary.indexOf(book);
-    
-    myLibrary.splice(index, 1);
-
-    displayLibrary()
-}
-
-const readBook = (book, element) => {
-    book.hasRead()
-    element.style.display = "none"
-
-    displayLibrary()
-}
 
 document.getElementById("bookForm").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -118,4 +102,9 @@ function closeForm() {
 
 }
 
-addBookToLibrary()
+addBookToLibrary("test title 1", "test author 1", 2, false)
+addBookToLibrary("test title 2", "test author 1", 2, false)
+addBookToLibrary("test title 3", "test author 1", 2, false)
+addBookToLibrary("test title 4", "test author 1", 2, false)
+addBookToLibrary("test title 5", "test author 1", 2, false)
+addBookToLibrary("test title 6", "test author 1", 2, false)
