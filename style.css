@@ -1,23 +1,24 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
+    background-color: #B3D8A8;
 }
 
 .project-container {
     padding: 15px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr) );
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 24%) );
+    grid-template-rows: repeat(auto-fit, minmax(250px, 25%) );
     gap: 15px;
     border: solid 3px #578E7E;
     border-radius: 20px;
-}
+   }
 
 .bookContainer {
     height: 200px;
-    background-color: #FFFAEC;
+    background-color: #FBFFE4;
     border-radius: 10px;
-    border-left: 10px solid #578E7E;
+    border-left: 10px solid #3D8D7A;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,9 +26,9 @@ body {
 }
 
 .title {
-  font-size: 30px;
+  font-size: 24px;
   margin: 10px;
-  border-bottom: 3px solid #578E7E;
+  border-bottom: 3px solid #3D8D7A;
 }
 
 .author {
@@ -54,7 +55,7 @@ body {
 }
 
 .readButton {
-  color: rgb(247, 219, 219);
+  color: rgb(246, 232, 232);
   font-size: medium;
   border: none;
   cursor: pointer;
@@ -66,30 +67,28 @@ body {
   margin-left: 20px;
 }
 
-
 .button {
     height: 60px;
     width: 100%;
 }
 
 .new-book {
-  background-color: #578E7E;
+  background-color: #3D8D7A;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  width: 280px;
-  border-radius: 10px;
+  width: 180px;
+  border-radius: 20px;
+  font-size: medium;
 }
 
-/* The popup form - hidden by default */
 .form-popup {
   display: none;
   z-index: 9;
 }
 
-/* Add styles to the form container */
 .form-container {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr;
@@ -97,30 +96,26 @@ body {
     gap: 30px;
     padding-left: 12px;
     padding-top: 12px;
-    background-color: white;
     border-radius: 20px;
 }
 
-/* Full-width input fields */
 .form-container input[type=text], .form-container input[type=number] {
   width: 80%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
-  background: #f1f1f1;
+  background: #FBFFE4;
+  border-radius: 10px;
 }
 
-
-/* When the inputs get focus, do something */
 .form-container input[type=text]:focus, .form-container input[type=number]:focus {
   background-color: #ddd;
   outline: none;
 }
 
-
-/* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
+  font-size: medium;
+  background-color: #538b4b;
   color: white;
   border: none;
   cursor: pointer;
@@ -132,12 +127,10 @@ body {
   border-radius: 10px;
 }
 
-/* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: #dc5f5a;
 }
 
-/* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }

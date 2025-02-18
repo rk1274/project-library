@@ -44,7 +44,7 @@ const displayBook = (book, container) => {
 
     let removeButton = document.createElement("BUTTON");
     removeButton.className = 'removeButton';
-    removeButton.textContent = 'remove';
+    removeButton.textContent = 'Remove';
     removeButton.onclick = () => removeBook(book)
 
     let readButton = document.createElement("BUTTON");
@@ -102,9 +102,5 @@ function closeForm() {
 
 }
 
-addBookToLibrary("test title 1", "test author 1", 2, false)
-addBookToLibrary("test title 2", "test author 1", 2, false)
-addBookToLibrary("test title 3", "test author 1", 2, false)
-addBookToLibrary("test title 4", "test author 1", 2, false)
-addBookToLibrary("test title 5", "test author 1", 2, false)
-addBookToLibrary("test title 6", "test author 1", 2, false)
+addBookToLibrary("Clean Code: A Handbook of Agile Software Craftsmanship", "Robert C. Martin", 2, false)
+addBookToLibrary("Test-Driven Development by Example", "Kent Beck", 2, false)
